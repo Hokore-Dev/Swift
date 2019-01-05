@@ -151,3 +151,89 @@ var anotherEmptyString = String()
 
 if emptyString.isEmpty { }
 ```
+
+# Enumerations
+```swift
+enum City
+{
+	case Seoul
+	case Busan
+}
+
+print(City.Seoul)
+print(City.Busan)
+
+var city : City = .Seoul
+print(city)
+```
+
+# Class
+willSet : 설정되기 전에 호출됨
+didSet : 설정된 후에 호출됨
+
+```swift
+class VideoMode
+{
+	var time: Float = 1 {
+		willSet(step) {
+			print(step)
+		}
+		didSet {
+			if time > oldValue {
+			print("add")
+			}
+		}
+	}
+	var leftTime: Float 
+	{
+		get {
+			return 100 - time
+		}
+	}
+}
+```
+상속은 똑같음 virtual 같은 거 없이 하위 클래스에서 override 하면 다 땡겨와짐
+
+```swift
+init() {
+	print("init")
+}
+```
+생성자는 init, 상위 클래스는 super로 부름
+
+```swift
+class A
+{
+	var description: String {
+		return "Hi"
+	}
+}
+```
+안에 안넣으면 그냥 getter로 인식됨
+
+# Structure
+```swift
+struct Student {
+	var name:String
+	var age:Int
+	var height:Int
+}
+```
+
+# Optionals
+값이 없을 지도 모르는 상황에서 사용함.
+null과 empty를 나눌수 있는 경우 (swift는 nil을 넣을 수 없음)
+```swift
+var serverResponseCode: Int? = 404
+serverResponseCode = nil
+
+// base check
+if serverResponseCode != nil {
+	print(serverResponseCode)
+}
+
+// optional binding
+if let value = serverResponseCode {
+	// nil을 검증하고 옵셔널을 해제하여 사용하고 싶을 때
+}
+```
